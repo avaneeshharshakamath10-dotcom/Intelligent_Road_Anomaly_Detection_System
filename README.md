@@ -1,5 +1,5 @@
 # Intelligent_Road_Anomaly_Detection_System
-# Vision-Based Pothole and Speed-Hump Detection with V2V-Style Wireless Alert Broadcasting
+
 
 A low-cost road-safety prototype. A camera pipeline detects **potholes and speed humps**, estimates how far away they are, decides what the driver should do, and **broadcasts a wireless alert** that a second node (ESP32 with an OLED) displays as **"POTHOLE AHEAD"** or **"HUMP AHEAD"**.
 
