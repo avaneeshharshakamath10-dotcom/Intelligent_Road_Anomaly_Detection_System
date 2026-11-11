@@ -90,7 +90,7 @@ flowchart LR
 
 The USB cable to the laptop provides power and the virtual COM port (USART2, 115200 baud).
 
-![STM32 to nRF24L01 wiring](docs/images/diagram_stm32_nrf24.png)
+
 
 ### ESP32 to nRF24L01 and OLED
 
@@ -102,7 +102,7 @@ The USB cable to the laptop provides power and the virtual COM port (USART2, 115
 | SDA / SCL | GPIO 21 / 22 | OLED SDA / SCL |
 | VDD | 3V3 | OLED VDD |
 
-![ESP32 wiring](docs/images/diagram_esp32_nrf24_oled.png)
+
 
 > **Power warning:** the nRF24L01 chip is 3.3 V only. Feeding **5 V** is correct **only** for adapters that have an onboard regulator. If your adapter has no regulator, use 3.3 V.
 
@@ -142,7 +142,7 @@ Key settings in `config.py`: confidence 0.70, IoU 0.45, inference every 2nd fram
 
 1. Open the project in STM32CubeIDE, build and flash it to the Nucleo-L432KC.
 2. Open a serial terminal (for example PuTTY) on the Nucleo's COM port at **115200 baud, 8N1**.
-3. Reset the board. You should see the boot register dump (see [Verifying the radio](#verifying-the-radio)) and `Waiting for command...`.
+3. Reset the board. You should see the boot register dump see [Verifying the radio] and `Waiting for command...`.
 4. Test without Python: type `POTHOLE` and press Enter. The STM32 prints `Sending POTHOLE! ID=1 ...` and transmits.
 
 > Close the terminal before running `main.py`: only one program can hold a COM port.
@@ -217,7 +217,7 @@ Reset several times: the dump must be **identical every time**. Different values
 | All registers read `0x00`, adapter LED off | No power to the adapter | Check VCC and GND wiring |
 | Scrambled or changing register values | Supply noise, regulator without headroom, breadboard contacts | Feed the adapter from 5 V, add 100 uF + 10 uF capacitors, use direct jumper wires |
 | `RF_CH` reads 160 instead of 80 | SPI timing margin | Lower the SPI clock (500 kHz on STM32, 1 MHz on ESP32) |
-| Nothing works despite correct wiring | Nucleo-32 header labels differ from MCU pin names | Use the D13/D12/D11/D3/D6 mapping in [Wiring](#wiring) |
+| Nothing works despite correct wiring | Nucleo-32 header labels differ from MCU pin names | Use the D13/D12/D11/D3/D6 mapping in [Wiring]|
 | ESP32 shows `NRF ERROR` | Radio not answering on SPI | Power-cycle (unplug USB), reseat the module in its adapter, try another cable; run `nrf_spi_test` |
 | ESP32 `NRF ERROR` after editing the sketch | The 3-argument `RF24` constructor was not compatible with the manual `SPI.begin()` here | Keep `RF24 radio(CE_PIN, CSN_PIN)` and use `SPI.setFrequency(1000000)` |
 | Some alerts not received | No hardware retransmission when Auto-Ack is off | Already mitigated by sending each alert 3 times |
@@ -255,12 +255,6 @@ Reset several times: the dump must be **identical every time**. Different values
 - Longer-range radio (LoRa, or DSRC / C-V2X hardware) and field trials
 
 
-Model weights (`*.pt`) and the dataset are large; keep them out of the repository or use [Git LFS](https://git-lfs.com) / GitHub Releases, and note the download link here.
-
-## Team, references, license
-
-**Team:** add names, USNs and guide here.
-**Institution:** add college and department here.
 
 **References**
 - Ultralytics YOLOv8: https://github.com/ultralytics/ultralytics
@@ -269,4 +263,4 @@ Model weights (`*.pt`) and the dataset are large; keep them out of the repositor
 - Nordic Semiconductor, nRF24L01+ Product Specification
 - STMicroelectronics, UM1956: STM32 Nucleo-32 boards user manual
 
-**License:** add a `LICENSE` file (for example MIT) and state it here.
+
